@@ -1,2 +1,2 @@
-# killstat-bot
-Bot using heroku 24/7
+# neuromask-bot
+Neuromask Discord Bot using heroku 24/7
