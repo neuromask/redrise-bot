@@ -26,8 +26,8 @@ client.on("guildDelete", guild => {
 });
 
 client.on('message', message => {
-     if (message.content === 'ping') {
-     	message.reply('pong');
+     if (message.content === '!who') {
+     	message.reply('bot');
    	}
 });
 
