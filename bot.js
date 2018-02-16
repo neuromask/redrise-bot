@@ -62,19 +62,7 @@ client.on('message', async message => {
     const m = await message.channel.send("Ping?");
     m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
   }
-  
-  if(command === "score") {
-    
-    $.ajax({                                      
-      url: 'http://testfield.eu/bot/bot.php',       
-      type: "POST",
-      data: { lat: lattitude } 
-    }).done(function( msg ) {
-        message.channel.send(msg);
-    });
-    
-  }
-  
+
   if(command === "say") {
     // makes the bot say something and delete the message. As an example, it's open to anyone to use. 
     // To get the "message" itself we join the `args` back into a string with spaces: 
