@@ -51,6 +51,18 @@ client.on('message', async message => {
   
   // Let's go with a few common example commands! Feel free to delete or change those.
   
+    if(command === "score") {
+    
+      $.ajax({                                      
+        url: 'http://testfield.eu/bot/bot.php',       
+        type: "POST",
+        data: { lat: lattitude } 
+      }).done(function( msg ) {
+          message.channel.send(msg);
+      });
+    
+    }
+  
   if(command === "ping") {
     // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
     // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
