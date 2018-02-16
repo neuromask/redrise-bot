@@ -1,6 +1,11 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+var script = document.createElement('script');
+script.src = 'http://code.jquery.com/jquery-1.11.0.min.js';
+script.type = 'text/javascript';
+document.getElementsByTagName('head')[0].appendChild(script);
+
 const config = require("./config.json");
 // config.token contains the bot's token
 // config.prefix contains the message prefix.
@@ -58,6 +63,18 @@ client.on('message', async message => {
     m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
   }
   
+  if(command === "score") {
+    
+    $.ajax({                                      
+      url: 'http://testfield.eu/bot/bot.php',       
+      type: "POST",
+      data: { lat: lattitude } 
+    }).done(function( msg ) {
+        message.channel.send(msg);
+    });
+    
+  }
+  
   if(command === "say") {
     // makes the bot say something and delete the message. As an example, it's open to anyone to use. 
     // To get the "message" itself we join the `args` back into a string with spaces: 
@@ -68,6 +85,7 @@ client.on('message', async message => {
     message.channel.send(sayMessage);
   }
   
+  /*
   if(command === "kick") {
     // This command must be limited to mods and admins. In this example we just hardcode the role names.
     // Please read on Array.some() to understand this bit: 
@@ -131,6 +149,8 @@ client.on('message', async message => {
     message.channel.bulkDelete(fetched)
       .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
   }
+  
+  */
 });
 
 
