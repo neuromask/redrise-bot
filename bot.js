@@ -56,9 +56,11 @@ client.on('message', async message => {
   
     if(command === "score") {
       
+      message.channel.send('go');
+      
       request.get(url, (error, response, body) => {
         let json = JSON.parse(body);
-        message.channel.send(json);
+        message.channel.send(json.count);
       });
     
     }
