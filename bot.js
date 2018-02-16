@@ -52,13 +52,20 @@ client.on('message', async message => {
   // Let's go with a few common example commands! Feel free to delete or change those.
   
     if(command === "score") {
-    
-      $.ajax({                                      
-        url: 'http://testfield.eu/bot/bot.php',       
-        type: "POST",
-        data: { lat: lattitude } 
-      }).done(function( msg ) {
-          message.channel.send(msg);
+      
+      message.channel.send('request started');
+      
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'http://testfield.eu/bot/bot.php',   
+        timeout: 2000,
+        success: function(data, textStatus ){
+           message.channel.send(data);
+        },
+        error: function(xhr, textStatus, errorThrown){
+           message.channel.send('request failed');
+        }
       });
     
     }
