@@ -1,6 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+const request = require("request");
+const url = "http://testfield.eu/bot/bot.php";
+
 const config = require("./config.json");
 // config.token contains the bot's token
 // config.prefix contains the message prefix.
@@ -53,19 +56,9 @@ client.on('message', async message => {
   
     if(command === "score") {
       
-      message.channel.send('request started');
-      
-      $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        url: 'http://testfield.eu/bot/bot.php',   
-        timeout: 2000,
-        success: function(data, textStatus ){
-           message.channel.send(data);
-        },
-        error: function(xhr, textStatus, errorThrown){
-           message.channel.send('request failed');
-        }
+      request.get(url, (error, response, body) => {
+        let json = JSON.parse(body);
+        message.channel.send(json);
       });
     
     }
