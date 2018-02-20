@@ -110,10 +110,11 @@ client.on('message', async message => {
         const helpMessage =
             "Usage: !<command> [value]\n" +
             "Commands:\n" +
-            "!site ...................... website with stats\n" +
-            "!score <nick> <clan> ....... stats\n" +
-            "!ping .... removes a subscription for the current channel\n" +
-            "!help ............. displays this text";
+            "!site ................................ website with stats\n" +
+            "!score <nick> <clan> ....... stats (in development)\n" +
+            "!ping ................................ bot's ping to server\n" +
+            "!say <message> ...................... bot's ping to server\n" +
+            "!help ................................ displays this text";
         
         message.channel.send(helpMessage);
     }
