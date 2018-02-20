@@ -52,8 +52,6 @@ client.on('message', async message => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   
-  // Let's go with a few common example commands! Feel free to delete or change those.
-  
     if(command === "score") {
       
       message.channel.send('go');
@@ -65,6 +63,21 @@ client.on('message', async message => {
     
     }
   
+  if(command === "help") {
+      const helpMessage = `\`\`\`
+        Usage: !<command> [value]
+        Commands:
+          score <repo> ....... adds a subscription for the current channel
+          ping <repo> .... removes a subscription for the current channel
+          help ............. displays this text\`\`\``;
+       channel.sendMessage(helpMessage);
+    }
+  }
+  
+  if(command === "site") {
+      message.channel.send('http://testfield.eu/l2r/');
+    }
+
   if(command === "ping") {
     // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
     // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
