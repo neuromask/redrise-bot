@@ -83,7 +83,7 @@ client.on('message', async message => {
     const command = args.shift().toLowerCase();
 
     // Rock Paper SCISSORS
-    if (message.content.startsWith('rps')) {
+    if (command === "rps") {
         let userChoice = message.content.split(' ')
         if (userChoice[1].toUpperCase() === 'ROCK' || userChoice[1].toUpperCase() === 'PAPER' || userChoice[1].toUpperCase() === 'SCISSORS') {
             let results = rps(userChoice[1])
@@ -107,14 +107,13 @@ client.on('message', async message => {
     }
 
     if (command === "help") {
-        const helpMessage = [
-            'Usage: !<command> [value]\n' +
-            'Commands:\n' +
-            '!site ...................... website with stats\n' +
-            '!score <nick> <clan> ....... stats\n' +
-            '!ping .... removes a subscription for the current channel\n' +
-            '!help ............. displays this text'
-        ]
+        const helpMessage =
+            "Usage: !<command> [value]\n" +
+            "Commands:\n" +
+            "!site ...................... website with stats\n" +
+            "!score <nick> <clan> ....... stats\n" +
+            "!ping .... removes a subscription for the current channel\n" +
+            "!help ............. displays this text";
 
         channel.sendMessage(helpMessage);
     }
