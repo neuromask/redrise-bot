@@ -54,8 +54,6 @@ client.on('message', async message => {
   
     if(command === "score") {
       
-      message.channel.send('go');
-      
       request.get(url, (error, response, body) => {
         let json = JSON.parse(body);
         message.channel.send(json.count);
@@ -67,9 +65,10 @@ client.on('message', async message => {
       const helpMessage = `\`\`\`
         Usage: !<command> [value]
         Commands:
-          score <repo> ....... adds a subscription for the current channel
-          ping <repo> .... removes a subscription for the current channel
-          help ............. displays this text\`\`\``;
+          !site ...................... website with stats
+          !score <nick> <clan> ....... stats
+          !ping .... removes a subscription for the current channel
+          !help ............. displays this text\`\`\``;
        channel.sendMessage(helpMessage);
     }
   }
