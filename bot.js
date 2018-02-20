@@ -114,8 +114,8 @@ client.on('message', async message => {
             "!score <nick> <clan> ....... stats\n" +
             "!ping .... removes a subscription for the current channel\n" +
             "!help ............. displays this text";
-
-        channel.sendMessage(helpMessage);
+        
+        message.channel.send(helpMessage);
     }
 
     if (command === "ping") {
