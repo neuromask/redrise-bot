@@ -108,13 +108,14 @@ client.on('message', async message => {
 
     if (command === "help") {
         const helpMessage =
-            "Usage: !<command> [value]\n" +
-            "Commands:\n" +
-            "!site ................................ website with stats\n" +
-            "!score <nick> <clan> ....... stats (in development)\n" +
-            "!ping ................................ bot's ping to server\n" +
-            "!say <message> ...................... bot's ping to server\n" +
-            "!help ................................ displays this text";
+            "\n" +
+            "**Команды**:\n" +
+            "!site ....................................... сайт статистики\n" +
+            "!score <nick> <clan> ....... счет (в разработке)\n" +
+            "!ping ....................................... пинг бота\n" +
+            "!say <message> ................. бот повторяет\n" +
+            "!rps <rock|paper|scissors> ........ камень, ножницы, бумага - игра"
+            "!help ..................................... показывает этот текст";
         
         message.channel.send(helpMessage);
     }
