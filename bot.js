@@ -29,7 +29,7 @@ function randomNum(min, max) {
 
 // Rock Paper SCISSORS Function
 function rps(user) {
-    let bot = randomNum(1, 3)
+    let bot = randomNum(1, 4)
     user = user.toUpperCase()
 
     switch (bot) {
