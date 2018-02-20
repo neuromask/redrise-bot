@@ -22,6 +22,48 @@ client.on('message', message => {
     }
 });
 
+// Random Number Function
+function randomNum(min, max) {
+    return Math.floor(Math.random() * (max - min) + min)
+}
+
+// Rock Paper SCISSORS Function
+function rps(user) {
+    let bot = randomNum(1, 3)
+    user = user.toUpperCase()
+
+    switch (bot) {
+        case 1:
+            bot = 'ROCK'
+            break
+        case 2:
+            bot = 'PAPER'
+            break
+        case 3:
+            bot = 'SCISSORS'
+            break
+    }
+
+    if (user === 'ROCK') {
+        if (bot === 'ROCK') return ['WTF A TIE HOW', user, bot]
+        if (bot === 'PAPER') return ['HAHA I WIN YOU LOSE HAHA', user, bot]
+        if (bot === 'SCISSORS') return ['WHAT HOW DID YOU WIN', user, bot]
+    }
+
+    if (user === 'PAPER') {
+        if (bot === 'PAPER') return ['WTF A TIE HOW', user, bot]
+        if (bot === 'SCISSORS') return ['HAHA I WIN YOU LOSE HAHA', user, bot]
+        if (bot === 'ROCK') return ['WHAT HOW DID YOU WIN', user, bot]
+    }
+
+    if (user === 'SCISSORS') {
+        if (bot === 'SCISSORS') return ['WTF A TIE HOW', user, bot]
+        if (bot === 'ROCK') return ['HAHA I WIN YOU LOSE HAHA', user, bot]
+        if (bot === 'PAPER') return ['WHAT HOW DID YOU WIN', user, bot]
+    }
+}
+
+
 client.on('message', async message => {
     // This event will run on every single message received, from any channel or DM.
 
@@ -40,6 +82,17 @@ client.on('message', async message => {
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
+    // Rock Paper SCISSORS
+    if (message.content.startsWith('rps')) {
+        let userChoice = message.content.split(' ')
+        if (userChoice[1].toUpperCase() === 'ROCK' || userChoice[1].toUpperCase() === 'PAPER' || userChoice[1].toUpperCase() === 'SCISSORS') {
+            let results = rps(userChoice[1])
+            message.channel.sendMessage('__**' + results[0] + '**__' + '\n\n**User\'s choice: **' + results[1] + '\n**Bot\'s choice: **' + results[2])
+        } else {
+            message.channel.sendMessage('**ERROR: **Invalid syntax! Be sure to use "rps (rock, paper, or scissors)"')
+        }
+    }
+
     if (command === "score") {
 
         request.get(url, (error, response, body) => {
@@ -54,13 +107,15 @@ client.on('message', async message => {
     }
 
     if (command === "help") {
-        const helpMessage = `\`\`\`
-        Usage: !<command> [value]
-        Commands:
-          !site ...................... website with stats
-          !score <nick> <clan> ....... stats
-          !ping .... removes a subscription for the current channel
-          !help ............. displays this text\`\`\``;
+        const helpMessage = [
+            'Usage: !<command> [value]\n' +
+            'Commands:\n' +
+            '!site ...................... website with stats\n' +
+            '!score <nick> <clan> ....... stats\n' +
+            '!ping .... removes a subscription for the current channel\n' +
+            '!help ............. displays this text'
+        ]
+
         channel.sendMessage(helpMessage);
     }
 
@@ -70,7 +125,7 @@ client.on('message', async message => {
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
     }
-    
+
     if (command === "say") {
         // makes the bot say something and delete the message. As an example, it's open to anyone to use. 
         // To get the "message" itself we join the `args` back into a string with spaces: 
@@ -80,7 +135,7 @@ client.on('message', async message => {
         // And we get the bot to say the thing: 
         message.channel.send(sayMessage);
     }
-    
+
 });
 
 
