@@ -64,14 +64,16 @@ function rps(user) {
 }
 
 function searchStats(nick) {
+    message.channel.send("2");
     request.get(url, (error, response, body) => {
         let arr = JSON.parse(body);
+        message.channel.send(arr.length);
 
-        return arr.filter(function (el) {
+        /*return arr.filter(function (el) {
             if (el.name == nick) {
                 return el;
             }
-        });
+        });*/
     });
 
 }
@@ -113,7 +115,7 @@ client.on('message', async message => {
         const nick = fullMessage[1];
         message.channel.send(nick);
 
-        //let stats = searchStats(nick);
+        let stats = searchStats(nick);
 
         message.channel.send("test");
         //message.channel.send(stats);
