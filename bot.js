@@ -63,20 +63,20 @@ function rps(user) {
     }
 }
 
-function searchStats(nick) {
+/*function searchStats(nick) {
     message.channel.send("2");
     request.get(url, (error, response, body) => {
         let arr = JSON.parse(body);
         message.channel.send(arr.length);
 
-        /*return arr.filter(function (el) {
+        return arr.filter(function (el) {
             if (el.name == nick) {
                 return el;
             }
-        });*/
+        });
     });
 
-}
+}*/
 
 client.on('message', async message => {
     // This event will run on every single message received, from any channel or DM.
@@ -115,12 +115,10 @@ client.on('message', async message => {
         const nick = fullMessage[1];
         message.channel.send(nick);
         
-     request.get(url, (error, response, body) => {
-        let arr = JSON.parse(body);
-        message.channel.send(arr.length);
-    });
-
-        //let stats = searchStats(nick);
+         request.get(url, (error, response, body) => {
+            let json = JSON.parse(body);
+            message.channel.send(json.length);
+        });
 
         message.channel.send("test");
         //message.channel.send(stats);
