@@ -109,8 +109,11 @@ client.on('message', async message => {
     }
 
     if (command === "score") {
-        let fullMessage = message.content.split(' ')
+	    message.channel.send("1");
+        let fullMessage = message.content.split(' ');
+	    message.channel.send(fullMessage);
         const nick = fullMessage[1];
+	    message.channel.send(nick);
         
         stats = searchStas(nick);
         
