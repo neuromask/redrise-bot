@@ -69,11 +69,15 @@ function searchStats(nick) {
     request.get(url, (error, response, body) => {
         let arr = JSON.parse(body);
         
-        return arr.filter(function (el) {
+        message.channel.send(arr.length);
+        message.channel.send(arr[0].kills);
+        
+        let a = arr.filter(function (el) {
             if (el.name == nick) {
              return el;
             }
         });
+        message.channel.send(a);
     });
 }
 
