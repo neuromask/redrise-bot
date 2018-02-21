@@ -63,20 +63,17 @@ function rps(user) {
     }
 }
 
-
-
 function searchStats(nick) {
     request.get(url, (error, response, body) => {
         let arr = JSON.parse(body);
-        
+
         return arr.filter(function (el) {
-	if (el.name == nick) {
-     return el;
-    }
-});
+            if (el.name == nick) {
+                return el;
+            }
+        });
     });
-    
-    
+
 }
 
 client.on('message', async message => {
@@ -109,14 +106,14 @@ client.on('message', async message => {
     }
 
     if (command === "score") {
-	    message.channel.send("1");
+        message.channel.send("1");
         let fullMessage = message.content.split(' ');
-	    message.channel.send(fullMessage);
+        message.channel.send(fullMessage);
         const nick = fullMessage[1];
-	    message.channel.send(nick);
-        
+        message.channel.send(nick);
+
         let stats = searchStats(nick);
-        
+
         message.channel.send("test");
         message.channel.send(stats);
         message.channel.send(stats[0].name);
@@ -135,8 +132,8 @@ client.on('message', async message => {
             "!ping ....................................... пинг бота\n" +
             "!say <message> ................. бот повторяет\n" +
             "!rps <rock|paper|scissors> ........ камень, ножницы, бумага - игра"
-            "!help ..................................... показывает этот текст";
-        
+        "!help ..................................... показывает этот текст";
+
         message.channel.send(helpMessage);
     }
 
