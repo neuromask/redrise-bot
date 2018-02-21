@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const request = require("request");
-const url = "http://testfield.eu/bot/bot.php";
+const url = "http://testfield.eu/l2r/fetch.php";
 
 const config = require("./config.json");
 // config.token contains the bot's token
@@ -64,6 +64,21 @@ function rps(user) {
 }
 
 
+
+function searchStats(nick) {
+    request.get(url, (error, response, body) => {
+        let arr = JSON.parse(body);
+        
+        return arr.filter(function (el) {
+	if (el.name == nick) {
+     return el;
+    }
+});
+    });
+    
+    
+}
+
 client.on('message', async message => {
     // This event will run on every single message received, from any channel or DM.
 
@@ -94,12 +109,14 @@ client.on('message', async message => {
     }
 
     if (command === "score") {
-
-        request.get(url, (error, response, body) => {
-            let json = JSON.parse(body);
-            message.channel.send(json.count);
-        });
-
+        let fullMessage = message.content.split(' ')
+        const nick = fullMessage[1];
+        
+        stats = searchStas(nick);
+        
+        message.channel.send("test");
+        message.channel.send(stats);
+        message.channel.send(stats[0].name);
     }
 
     if (command === "site") {
