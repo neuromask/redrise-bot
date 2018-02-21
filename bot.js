@@ -114,8 +114,13 @@ client.on('message', async message => {
         message.channel.send(fullMessage);
         const nick = fullMessage[1];
         message.channel.send(nick);
+        
+     request.get(url, (error, response, body) => {
+        let arr = JSON.parse(body);
+        message.channel.send(arr.length);
+    });
 
-        let stats = searchStats(nick);
+        //let stats = searchStats(nick);
 
         message.channel.send("test");
         //message.channel.send(stats);
