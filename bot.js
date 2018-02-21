@@ -105,6 +105,8 @@ client.on('message', async message => {
         const nick = fullMessage[1];
         const clan = fullMessage[2];
         
+        message.channel.send(fullMessage.length);
+        
         switch(clan) {
             case 'FARGO': clanID = 4; break;
             case 'RusPower': clanID = 3; break;
