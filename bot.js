@@ -103,7 +103,7 @@ client.on('message', async message => {
         let fullMessage = message.content.split(' ');
         let clanID = 0;
         const nick = fullMessage[1];
-        const clan = fullMessage[2];
+        let clan = fullMessage[2];
         
         if (fullMessage.length >= 3) {
           clan = clan.toLowerCase();
