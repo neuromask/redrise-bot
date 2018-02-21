@@ -105,20 +105,19 @@ client.on('message', async message => {
         const nick = fullMessage[1];
         const clan = fullMessage[2];
         
-        message.channel.send(fullMessage.length);
-        
-        switch(clan) {
+        if (fullMessage.length >= 3) {
+          switch(clan) {
             case 'FARGO': clanID = 4; break;
             case 'RusPower': clanID = 3; break;
             case 'Легенды': clanID = 1; break;
             case 'ADClan': clanID = 2; break;
-            case '': clanID = 0; break;
 
           default:
             message.channel.send("Клан не найден. Выводится общая статистика!");
             break;
+          }
         }
-        
+
         request.get(url + clanID, (error, response, body) => {
             let arr = JSON.parse(body);
 
