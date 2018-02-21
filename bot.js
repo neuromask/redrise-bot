@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const request = require("request");
-const url = "http://testfield.eu/l2r/fetch.php";
+const url = "http://testfield.eu/l2r/fetch.php?id=";
 
 const config = require("./config.json");
 // config.token contains the bot's token
@@ -101,9 +101,22 @@ client.on('message', async message => {
     if (command === "score") {
 
         let fullMessage = message.content.split(' ');
+        let clanID = 0;
         const nick = fullMessage[1];
+        const clan = fullMessage[2];
         
-        request.get(url, (error, response, body) => {
+        switch(clan) {
+            case 'FARGO': clanID = 4; break;
+            case 'RusPower': clanID = 3; break;
+            case 'Легенды': clanID = 1; break;
+            case 'ADClan': clanID = 2; break;
+
+          default:
+            message.channel.send("Клан не найден");
+            break;
+        }
+        
+        request.get(url + clanID, (error, response, body) => {
             let arr = JSON.parse(body);
 
             arr.filter(function (el) {
@@ -125,6 +138,7 @@ client.on('message', async message => {
             "**Команды**:\n" +
             "!site ....................................... сайт статистики\n" +
             "!score <nick> <clan> ....... счет (в разработке)\n" +
+            "!top <clan> ....... top 5 (в разработке)\n" +
             "!ping ....................................... пинг бота\n" +
             "!say <message> ................. бот повторяет\n" +
             "!rps <rock|paper|scissors> ........ камень, ножницы, бумага - игра"
