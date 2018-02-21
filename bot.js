@@ -117,7 +117,7 @@ client.on('message', async message => {
         
          request.get(url, (error, response, body) => {
             let json = JSON.parse(body);
-            message.channel.send(json.count);
+            message.channel.send(json);
         });
 
         message.channel.send("test");
