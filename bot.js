@@ -106,11 +106,14 @@ client.on('message', async message => {
         const clan = fullMessage[2];
         
         if (fullMessage.length >= 3) {
+          clan = clan.toLowerCase();
           switch(clan) {
-            case 'FARGO': clanID = 4; break;
-            case 'RusPower': clanID = 3; break;
-            case 'Легенды': clanID = 1; break;
-            case 'ADClan': clanID = 2; break;
+            case 'fargo': clanID = 4; break;
+            case 'ruspower': clanID = 3; break;
+            case 'rp': clanID = 3; break;
+            case 'легенды': clanID = 1; break;
+            case 'adclan': clanID = 2; break;
+            case 'ad': clanID = 2; break;
 
           default:
             message.channel.send("Клан не найден. Выводится общая статистика!");
