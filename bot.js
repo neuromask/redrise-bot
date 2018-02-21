@@ -66,6 +66,7 @@ function rps(user) {
 
 
 function searchStats(nick) {
+    message.channel.send("1");
     request.get(url, (error, response, body) => {
         let arr = JSON.parse(body);
         
@@ -114,10 +115,11 @@ client.on('message', async message => {
 
         let fullMessage = message.content.split(' ');
         const nick = fullMessage[1];
+         message.channel.send(nick);
         let stats = searchStats(nick);
 
-        message.channel.send(stats);
-        message.channel.send(stats[0].kills);
+        //message.channel.send(stats);
+        //message.channel.send(stats[0].kills);
     }
 
     if (command === "site") {
