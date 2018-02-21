@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const request = require("request");
-const url = "http://testfield.eu/bot/bot.php";
+const url = "http://testfield.eu/l2r/fetch.php";
 
 const config = require("./config.json");
 // config.token contains the bot's token
@@ -63,20 +63,19 @@ function rps(user) {
     }
 }
 
-/*function searchStats(nick) {
-    message.channel.send("2");
+
+
+function searchStats(nick) {
     request.get(url, (error, response, body) => {
         let arr = JSON.parse(body);
-        message.channel.send(arr.length);
-
+        
         return arr.filter(function (el) {
             if (el.name == nick) {
-                return el;
+             return el;
             }
         });
     });
-
-}*/
+}
 
 client.on('message', async message => {
     // This event will run on every single message received, from any channel or DM.
@@ -108,21 +107,13 @@ client.on('message', async message => {
     }
 
     if (command === "score") {
-        
-        message.channel.send("1");
-        let fullMessage = message.content.split(' ');
-        message.channel.send(fullMessage);
-        const nick = fullMessage[1];
-        message.channel.send(nick);
-        
-         request.get(url, (error, response, body) => {
-            let json = JSON.parse(body);
-            message.channel.send(json);
-        });
 
-        message.channel.send("test");
-        //message.channel.send(stats);
-        //message.channel.send(stats[0].name);
+        let fullMessage = message.content.split(' ');
+        const nick = fullMessage[1];
+        let stats = searchStats(nick);
+
+        message.channel.send(stats);
+        message.channel.send(stats[0].kills);
     }
 
     if (command === "site") {
@@ -138,8 +129,8 @@ client.on('message', async message => {
             "!ping ....................................... пинг бота\n" +
             "!say <message> ................. бот повторяет\n" +
             "!rps <rock|paper|scissors> ........ камень, ножницы, бумага - игра"
-        "!help ..................................... показывает этот текст";
-
+            "!help ..................................... показывает этот текст";
+        
         message.channel.send(helpMessage);
     }
 
