@@ -110,6 +110,7 @@ client.on('message', async message => {
             case 'RusPower': clanID = 3; break;
             case 'Легенды': clanID = 1; break;
             case 'ADClan': clanID = 2; break;
+            case '': clanID = 0; break;
 
           default:
             message.channel.send("Клан не найден");
@@ -121,7 +122,7 @@ client.on('message', async message => {
 
             arr.filter(function (el) {
                 if (el.name == nick) {
-                    message.channel.send("**Name**: " + el.name + " - **Kills**: " + el.kills +" **Deaths**: " + el.deaths);
+                    message.channel.send("**Ник**: " + el.name + " - **Фраги**: " + el.kills +" **Смерти**: " + el.deaths);
                 }
             });
             
