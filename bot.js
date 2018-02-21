@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const request = require("request");
-const url = "http://testfield.eu/l2r/fetch.php";
+const url = "http://testfield.eu/bot/bot.php";
 
 const config = require("./config.json");
 // config.token contains the bot's token
@@ -117,7 +117,7 @@ client.on('message', async message => {
         
          request.get(url, (error, response, body) => {
             let json = JSON.parse(body);
-            message.channel.send(json[0].name);
+            message.channel.send(json.count);
         });
 
         message.channel.send("test");
