@@ -115,7 +115,7 @@ client.on('message', async message => {
         const nick = fullMessage[1];
 	    message.channel.send(nick);
         
-        stats = searchStas(nick);
+        let stats = searchStats(nick);
         
         message.channel.send("test");
         message.channel.send(stats);
