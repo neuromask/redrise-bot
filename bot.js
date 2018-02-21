@@ -66,20 +66,7 @@ function rps(user) {
 
 
 function searchStats(nick) {
-    message.channel.send("1");
-    request.get(url, (error, response, body) => {
-        let arr = JSON.parse(body);
-        
-        message.channel.send(arr.length);
-        message.channel.send(arr[0].kills);
-        
-        let a = arr.filter(function (el) {
-            if (el.name == nick) {
-             return el;
-            }
-        });
-        message.channel.send(a);
-    });
+   
 }
 
 client.on('message', async message => {
@@ -116,7 +103,19 @@ client.on('message', async message => {
         let fullMessage = message.content.split(' ');
         const nick = fullMessage[1];
          message.channel.send(nick);
-        let stats = searchStats(nick);
+        message.channel.send("1");
+    request.get(url, (error, response, body) => {
+        let arr = JSON.parse(body);
+        
+        message.channel.send(arr.length);
+        message.channel.send(arr[0].kills);
+        
+        arr.filter(function (el) {
+            if (el.name == nick) {
+             message.channel.send(el.name);
+            }
+        });
+    });
 
         //message.channel.send(stats);
         //message.channel.send(stats[0].kills);
