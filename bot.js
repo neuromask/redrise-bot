@@ -113,7 +113,7 @@ client.on('message', async message => {
             case '': clanID = 0; break;
 
           default:
-            message.channel.send("Клан не найден");
+            message.channel.send("Клан не найден. Выводится общая статистика!");
             break;
         }
         
