@@ -70,8 +70,10 @@ function sortByKey(array, key1, key2) {
   });
 }
 
-function searchStats(nick) {
-
+function isInt(value) {
+  return !isNaN(value) && 
+         parseInt(Number(value)) == value && 
+         !isNaN(parseInt(value, 10));
 }
 
 client.on('message', async message => {
@@ -146,7 +148,7 @@ client.on('message', async message => {
     let varCut = 3;
     let clan = fullMessage[2];
 
-    if (typeof fullMessage[1] == 'number') {
+    if (isInt(fullMessage[1])) {
       topNum = fullMessage[1];
     } else {
       clan = fullMessage[1];
