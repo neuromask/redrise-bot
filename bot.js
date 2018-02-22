@@ -131,7 +131,7 @@ client.on('message', async message => {
 
       arr.filter(function (el) {
         if (el.name == nick) {
-          message.channel.send("**Ник**: " + el.name + " - **Фраги**: " + el.kills + " **Смерти**: " + el.deaths);
+          message.channel.send(el.name + " - **Фраги**: " + el.kills + " **Смерти**: " + el.deaths);
         }
       });
 
@@ -170,12 +170,12 @@ client.on('message', async message => {
     }
 
     request.get(url + clanID, (error, response, body) => {
+      
       let arr = JSON.parse(body);
-
       sortByKey(arr, 'kills', 'deaths');
-      let arrTop = arr.slice(0, topNum);
+      const arrTop = arr.slice(0, topNum);
       arrTop.filter(function (el) {
-        message.channel.send("**Ник**: " + el.name + " - **Фраги**: " + el.kills + " **Смерти**: " + el.deaths);
+        message.channel.send(el.name + " - **Фраги**: " + el.kills + " **Смерти**: " + el.deaths);
       });
 
     });
