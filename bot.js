@@ -173,8 +173,8 @@ client.on('message', async message => {
       let arr = JSON.parse(body);
 
       sortByKey(arr, 'kills', 'deaths');
-      arr.slice(0, topNum);
-      arr.filter(function (el) {
+      let arrTop = arr.slice(0, topNum);
+      arrTop.filter(function (el) {
         message.channel.send("**Ник**: " + el.name + " - **Фраги**: " + el.kills + " **Смерти**: " + el.deaths);
       });
 
